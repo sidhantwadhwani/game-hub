@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import { CanceledError, getAdapter } from "axios";
 import useData from "./useData";
 import { Genre } from "./useGenres";
 import { GameQuery } from "../App";
@@ -20,7 +20,7 @@ export interface Game {
   }
   
 
-const useGames = (gameQuery : GameQuery) => useData<Game>("/games", {params : { genres : gameQuery.genre?.id, platforms : gameQuery.platform?.id}}, [gameQuery])
+const useGames = (gameQuery : GameQuery) => useData<Game>("/games", {params : { genres : gameQuery.genre?.id, platforms : gameQuery.platform?.id, ordering:gameQuery.sortOrder }}, [gameQuery])
 
 
 export default useGames
